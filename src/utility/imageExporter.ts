@@ -1,0 +1,11 @@
+export { default as close } from '../assets/images/icons/x.png';
+export { default as mapPin } from '../assets/images/icons/mapPin.png';
+export { default as starWhite } from '../assets/images/icons/starWhite.png';
+export { default as homeActive } from '../assets/images/icons/homeActive.png';
+export { default as angleRight } from '../assets/images/icons/angleRight.png';
+export { default as starActive } from '../assets/images/icons/starActive.png';
+export { default as angleDown } from '../assets/images/icons/chevron-down.png';
+export { default as strokePokeLogo } from '../assets/images/strokePokeLogo.png';
+export { default as hamburgerMenu } from '../assets/images/icons/hamburgerMenu.png';
+export { default as shoppingCartActive } from '../assets/images/icons/shoppingCartActive.png';
+export { default as shoppingCartInActive } from '../assets/images/icons/shoppingCartInActive.png';
