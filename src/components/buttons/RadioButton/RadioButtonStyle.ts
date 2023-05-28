@@ -37,6 +37,6 @@ export default StyleSheet.create({
         color: black,
     },
     active_text: {
-        color: red
+        color: red,
     }
 });
