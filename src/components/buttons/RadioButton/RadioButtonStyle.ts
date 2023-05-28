@@ -34,6 +34,7 @@ export default StyleSheet.create({
     secondary_text: {
         fontFamily: 'Inter-Regular',
         fontSize: 16,
+        color: black,
     },
     active_text: {
         color: red

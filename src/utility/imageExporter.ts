@@ -5,6 +5,7 @@ export { default as menu } from '../assets/images/icons/menu.png';
 export { default as cart } from '../assets/images/icons/cart.png';
 export { default as close } from '../assets/images/icons/close.png';
 export { default as trash } from '../assets/images/icons/trash.png';
+export { default as checkmark } from '../assets/images/icons/checkmark.png';
 export { default as arrow_down } from '../assets/images/icons/arrow-down.png';
 export { default as home_active } from '../assets/images/icons/home-active.png';
 export { default as arrow_right } from '../assets/images/icons/arrow-right.png';

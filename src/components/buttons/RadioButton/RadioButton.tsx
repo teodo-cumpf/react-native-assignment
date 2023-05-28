@@ -1,4 +1,6 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+
+import { AppText } from '../../typography';
 
 import styles from './RadioButtonStyle';
 
@@ -42,8 +44,8 @@ const RadioButton = (props: RadioButtonProps) => {
             </View>
 
             <View style={styles.row}>
-                <Text style={formatTextStyle()}>{primaryText}</Text>
-                <Text style={styles.secondary_text}>{secondaryText}</Text>
+                <AppText style={formatTextStyle()}>{primaryText}</AppText>
+                <AppText style={styles.secondary_text}>{secondaryText}</AppText>
             </View>
         </TouchableOpacity>
     );
