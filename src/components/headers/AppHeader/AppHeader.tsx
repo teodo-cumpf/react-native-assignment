@@ -8,9 +8,10 @@ const AppHeader = () => {
     return (
         <View style={styles.header}>
             <TouchableOpacity>
-                <Image style={styles.menu} source={menu}/>
+                <Image style={styles.menu} source={menu} />
             </TouchableOpacity>
-            <Image style={styles.logo} source={logo}/>
+            
+            <Image style={styles.logo} source={logo} />
         </View>
     );
 }

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { white } from '../../../assets/styles/colors';
+import { dark_gray, white } from '../../../assets/styles/colors';
 
 export default StyleSheet.create({
     header: {
@@ -10,6 +10,13 @@ export default StyleSheet.create({
         paddingTop: 7,
         flexDirection: 'row',
         backgroundColor: white,
+
+        shadowColor: dark_gray,
+        shadowOffset: {width: -2, height: 2},
+        shadowOpacity: 0.01,
+        shadowRadius: 5,
+
+        elevation: 10,
     },
     menu: {
         height: 36,
