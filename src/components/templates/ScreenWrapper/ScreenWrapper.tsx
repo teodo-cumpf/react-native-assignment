@@ -4,6 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 
 import { AppHeader } from '../../headers';
 
+import { white } from '../../../assets/styles/colors';
+
 import styles from './ScreenWrapperStyle';
 
 const ScreenWrapper = (props: PropsWithChildren) => {
@@ -11,8 +13,8 @@ const ScreenWrapper = (props: PropsWithChildren) => {
 
     return (
         <SafeAreaView style={styles.safe_area}>
-            <StatusBar style='auto' />
-            <AppHeader/>
+            <StatusBar style='auto' backgroundColor={white} />
+            <AppHeader />
             <View style={styles.screen_wrapper}>
                 {children}
             </View>

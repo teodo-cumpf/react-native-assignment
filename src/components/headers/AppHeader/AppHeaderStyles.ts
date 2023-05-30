@@ -12,8 +12,8 @@ export default StyleSheet.create({
         backgroundColor: white,
 
         shadowColor: dark_gray,
-        shadowOffset: {width: -2, height: 2},
-        shadowOpacity: 0.01,
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.1,
         shadowRadius: 5,
 
         elevation: 10,

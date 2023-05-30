@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { light_blue } from '../../../assets/styles/colors';
+import { light_blue, white } from '../../../assets/styles/colors';
 
 export default StyleSheet.create({
     safe_area: {
         flex: 1,
+        backgroundColor: white,
     },
     screen_wrapper: {
         backgroundColor: light_blue,

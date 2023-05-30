@@ -3,6 +3,7 @@ export { default as pin } from '../assets/images/icons/pin.png';
 export { default as star } from '../assets/images/icons/star.png';
 export { default as menu } from '../assets/images/icons/menu.png';
 export { default as cart } from '../assets/images/icons/cart.png';
+export { default as home } from '../assets/images/icons/home.png';
 export { default as close } from '../assets/images/icons/close.png';
 export { default as trash } from '../assets/images/icons/trash.png';
 export { default as checkmark } from '../assets/images/icons/checkmark.png';
