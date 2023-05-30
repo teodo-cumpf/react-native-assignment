@@ -30,6 +30,7 @@ export default StyleSheet.create({
         fontSize: 16,
         paddingLeft: 15,
         paddingRight: 5,
+        color: black,
     },
     secondary_text: {
         fontFamily: 'Inter-Regular',
