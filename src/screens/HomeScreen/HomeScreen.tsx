@@ -1,13 +1,13 @@
-import { Text } from 'react-native';
-
 import { ScreenWrapper } from '../../components/templates';
+import { ProgressBar } from './components';
 
 const HomeScreen = () => {
     return (
         <ScreenWrapper>
-            <Text>
-                Add home screen content here
-            </Text>
+            <ProgressBar
+                currentStep={1}
+                numberOfSteps={4}
+            />
         </ScreenWrapper>
     );
 }
