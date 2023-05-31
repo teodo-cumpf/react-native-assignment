@@ -1,10 +1,10 @@
 import apiInstance from '../instances/apiInstance';
 
 import { Bowl, IdType } from '../../types';
-import { PaginationRequestDTO, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
 
-export async function getBowls(payload: PaginationRequestDTO): Promise<PaginationResponseDTO<Bowl[]>> {
-    const response = await apiInstance.get(`/bowls?currentPage=${payload.currentPage}`);
+export async function getBowls(): Promise<PaginationResponseDTO<Bowl>> {
+    const response = await apiInstance.get(`/bowls`);
 
     return response.data;
 }
