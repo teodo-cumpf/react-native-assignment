@@ -3,14 +3,12 @@ import React from 'react';
 
 import RootNavigator from './src/navigation/navigator';
 
-import { useInitializeFonts } from './src/hooks';
+import { GlobalContextProvider } from './src/context';
 
 export default function App() {
-  const [fontsLoaded] = useInitializeFonts();
-
-  if (!fontsLoaded) return null;
-
   return (
-    <RootNavigator />
+    <GlobalContextProvider>
+      <RootNavigator />
+    </GlobalContextProvider>
   );
 }

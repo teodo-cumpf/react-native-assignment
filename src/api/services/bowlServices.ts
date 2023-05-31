@@ -3,15 +3,13 @@ import * as bowlClient from '../clients/bowlClient';
 import { formatApiError } from '../../utility/apiErrorHandler';
 
 import { Bowl } from '../../types';
-import { FormatedResponse, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { FormatedResponse } from '../dtoTypes/sharedDTOs';
 
-export async function getBowls(currentPage: number): Promise<FormatedResponse<PaginationResponseDTO<Bowl[]>>> {
+export async function getBowls(): Promise<FormatedResponse<Bowl[]>> {
     try {
-        const payload = { currentPage };
+        const result = await bowlClient.getBowls();
 
-        const result = await bowlClient.getBowls(payload);
-
-        return [result, null];
+        return [result.data, null];
     } catch (error: any) {
         return [null, formatApiError(error)];
     }

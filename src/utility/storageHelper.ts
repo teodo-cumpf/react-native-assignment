@@ -9,3 +9,7 @@ export async function setTokenToStorage(token: string){
 export async function getTokenFromStorage(){
     return await AsyncStorage.getItem(TOKEN_KEY);
 }
+
+export async function removeTokenFromStorage(){
+    return await AsyncStorage.removeItem(TOKEN_KEY);
+}
