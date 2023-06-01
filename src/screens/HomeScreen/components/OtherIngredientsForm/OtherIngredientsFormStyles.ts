@@ -3,11 +3,14 @@ import { StyleSheet } from 'react-native';
 import { black } from '../../../../assets/styles/colors';
 
 export default StyleSheet.create({
+    container: {
+        marginBottom: 15,
+    },
     title: {
         fontFamily: 'Inter-Bold',
         fontSize: 20,
         color: black,
-        paddingBottom: 10,
+        paddingBottom: 20,
         letterSpacing: -1
     },
     description: {
@@ -17,13 +20,6 @@ export default StyleSheet.create({
         letterSpacing: -0.4
     },
     form_wrapper: {
-        gap: 15,
-    },
-    button_wrapper: {
-        paddingTop: 30
-    },
-
-    padding: {
-        paddingBottom: 15,
+        gap: 24,
     }
 });

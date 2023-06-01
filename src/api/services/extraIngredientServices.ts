@@ -3,17 +3,15 @@ import * as extraIngredientsClient from '../clients/extraIngredientClient';
 import { formatApiError } from '../../utility/apiErrorHandler';
 
 import { ExtraIngredient } from '../../types';
-import { FormatedResponse, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { FormatedResponse } from '../dtoTypes/sharedDTOs';
 
-export async function getExtraIngredients(currentPage: number): Promise<FormatedResponse<PaginationResponseDTO<ExtraIngredient[]>>> {
+export async function getExtraIngredients(): Promise<FormatedResponse<ExtraIngredient[]>> {
     try {
-        const payload = { currentPage };
+        const result = await extraIngredientsClient.getExtraIngredients();
 
-        const result = await extraIngredientsClient.getExtraIngredients(payload);
-
-        return [result, null]
+        return [result.data, null];
     } catch (error: any) {
-        return [null, formatApiError(error)]
+        return [null, formatApiError(error)];
     }
 }
 

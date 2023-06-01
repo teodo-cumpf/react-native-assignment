@@ -1,10 +1,10 @@
 import apiInstance from '../instances/apiInstance';
 
 import { Sauce, IdType } from '../../types';
-import { PaginationRequestDTO, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
 
-export async function getSauces(payload: PaginationRequestDTO): Promise<PaginationResponseDTO<Sauce[]>> {
-    const response = await apiInstance.get(`/sauces?currentPage=${payload.currentPage}`);
+export async function getSauces(): Promise<PaginationResponseDTO<Sauce>> {
+    const response = await apiInstance.get(`/sauces`);
 
     return response.data;
 }

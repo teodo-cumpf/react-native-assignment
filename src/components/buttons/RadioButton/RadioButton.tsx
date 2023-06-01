@@ -38,6 +38,7 @@ const RadioButton = (props: RadioButtonProps) => {
         <TouchableOpacity
             onPress={onPress}
             style={styles.row}
+            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
         >
             <View style={formatRadioStyle()}>
                 {isSelected && <View style={styles.inner_circle} />}

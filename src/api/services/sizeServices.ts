@@ -3,15 +3,13 @@ import * as sizeClient from '../clients/sizeClient';
 import { formatApiError } from '../../utility/apiErrorHandler';
 
 import { Size } from '../../types';
-import { FormatedResponse, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { FormatedResponse } from '../dtoTypes/sharedDTOs';
 
-export async function getSizes(currentPage: number): Promise<FormatedResponse<PaginationResponseDTO<Size[]>>> {
+export async function getSizes(): Promise<FormatedResponse<Size[]>> {
     try {
-        const payload = { currentPage };
+        const result = await sizeClient.getSizes();
 
-        const result = await sizeClient.getSizes(payload);
-
-        return [result, null];
+        return [result.data, null];
     } catch (error: any) {
         return [null, formatApiError(error)];
     }

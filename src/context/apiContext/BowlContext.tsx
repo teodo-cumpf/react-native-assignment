@@ -26,7 +26,7 @@ const BowlContextProvider = (props: PropsWithChildren) => {
 
     const getBowls = useCallback(async () => {
         const [result, error] = await bowlService.getBowls();
-
+        
         if (result)
             return setBowls(result);
 
@@ -40,9 +40,9 @@ const BowlContextProvider = (props: PropsWithChildren) => {
 
     return (
         <BowlContext.Provider value={providerValue}>
-            {[props.children]}
+            {props.children}
         </BowlContext.Provider>
     );
 }
 
-export { BowlContext, BowlContextProvider }
+export { BowlContext, BowlContextProvider };

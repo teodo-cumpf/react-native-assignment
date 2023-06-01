@@ -1,10 +1,10 @@
 import apiInstance from '../instances/apiInstance';
 
 import { Base, IdType } from '../../types';
-import { PaginationRequestDTO, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
 
-export async function getBases(payload: PaginationRequestDTO): Promise<PaginationResponseDTO<Base[]>> {
-    const response = await apiInstance.get(`/bases?currentPage=${payload.currentPage}`);
+export async function getBases(): Promise<PaginationResponseDTO<Base>> {
+    const response = await apiInstance.get(`/bases`);
 
     return response.data;
 }

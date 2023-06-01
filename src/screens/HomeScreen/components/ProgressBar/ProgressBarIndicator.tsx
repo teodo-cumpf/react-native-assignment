@@ -2,14 +2,14 @@ import { View } from 'react-native';
 
 import { AppText } from '../../../../components/typography';
 
-import styles from './ProgressBarStyle';
+import styles from './ProgressBarIndicatorStyle';
 
-interface ProgressBar {
+interface ProgressBarIndicatorProps {
     currentStep: number;
     numberOfSteps: number;
 }
 
-const ProgressBar = (props: ProgressBar) => {
+const ProgressBarIndicator = (props: ProgressBarIndicatorProps) => {
     const { currentStep, numberOfSteps } = props;
 
     const progressPercentage = (100 / numberOfSteps) * currentStep;
@@ -29,4 +29,4 @@ const ProgressBar = (props: ProgressBar) => {
     );
 }
 
-export default ProgressBar;
+export default ProgressBarIndicator;

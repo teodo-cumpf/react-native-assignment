@@ -3,15 +3,13 @@ import * as sauceClient from '../clients/sauceClient';
 import { formatApiError } from '../../utility/apiErrorHandler';
 
 import { Sauce } from '../../types';
-import { FormatedResponse, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { FormatedResponse } from '../dtoTypes/sharedDTOs';
 
-export async function getSauces(currentPage: number): Promise<FormatedResponse<PaginationResponseDTO<Sauce[]>>> {
+export async function getSauces(): Promise<FormatedResponse<Sauce[]>> {
     try {
-        const payload = { currentPage };
-
-        const result = await sauceClient.getSauces(payload);
-
-        return [result, null];
+        const result = await sauceClient.getSauces();
+        
+        return [result.data, null];
     } catch (error: any) {
         return [null, formatApiError(error)];
     }

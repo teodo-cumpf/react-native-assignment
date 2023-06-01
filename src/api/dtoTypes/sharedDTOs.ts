@@ -14,10 +14,6 @@ export interface PaginationResponseDTO<Model> {
     data: Model[];
 }
 
-export interface PaginationRequestDTO {
-    currentPage: number;
-}
-
 export type FormatedResponse<Model> = [
     Model | null,
     null | ErrorDTO

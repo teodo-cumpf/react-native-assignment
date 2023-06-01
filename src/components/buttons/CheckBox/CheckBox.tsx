@@ -26,7 +26,7 @@ const CheckBox = (props: CheckmarkButtonProps) => {
     } = props;
 
     const formatCheckmarkStyle = () => {
-        if (disabled) 
+        if (disabled && !isSelected) 
             return [styles.checkbox, styles.checkbox_disabled];
         
         if (isSelected)
@@ -39,7 +39,7 @@ const CheckBox = (props: CheckmarkButtonProps) => {
         if (isSelected)
             return [styles.text, styles.text_active];
 
-        if (disabled)
+        if (disabled && !isSelected)
             return [styles.text, styles.text_disabled];
 
         return styles.text;
@@ -48,8 +48,9 @@ const CheckBox = (props: CheckmarkButtonProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            disabled={disabled}
+            disabled={disabled && !isSelected}
             style={styles.row}
+            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
         >
             <View style={formatCheckmarkStyle()}>
                 {isSelected && <Image source={checkmark} style={styles.icon}/>}

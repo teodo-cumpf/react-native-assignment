@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import BottomNavigation from './bottomNavigation/BottomNavigation';
 
-import useAppInitialization from '../hooks/useAppInitialization';
+import { useAppInitialization } from '../hooks';
 
 const RootNavigator = () => {
     const [isLoaded] = useAppInitialization();
@@ -12,7 +11,7 @@ const RootNavigator = () => {
 
     return (
         <NavigationContainer>
-            <BottomNavigation />
+            <BottomNavigation/>
         </NavigationContainer>
     );
 }

@@ -3,15 +3,13 @@ import * as ingredientClient from '../clients/ingredientClient';
 import { formatApiError } from '../../utility/apiErrorHandler';
 
 import { Ingredient } from '../../types';
-import { FormatedResponse, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { FormatedResponse } from '../dtoTypes/sharedDTOs';
 
-export async function getIngredients(currentPage: number): Promise<FormatedResponse<PaginationResponseDTO<Ingredient[]>>> {
+export async function getIngredients(): Promise<FormatedResponse<Ingredient[]>> {
     try {
-        const payload = { currentPage };
+        const result = await ingredientClient.getIngredients();
 
-        const result = await ingredientClient.getIngredients(payload);
-
-        return [result, null];
+        return [result.data, null];
     } catch (error: any) {
         return [null, formatApiError(error)];
     }

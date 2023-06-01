@@ -1,10 +1,10 @@
 import apiInstance from '../instances/apiInstance';
 
 import { ExtraIngredient, IdType } from '../../types';
-import { PaginationRequestDTO, PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
+import { PaginationResponseDTO } from '../dtoTypes/sharedDTOs';
 
-export async function getExtraIngredients(payload: PaginationRequestDTO): Promise<PaginationResponseDTO<ExtraIngredient[]>> {
-    const response = await apiInstance.get(`/extra_ingredients?currentPage=${payload.currentPage}`);
+export async function getExtraIngredients(): Promise<PaginationResponseDTO<ExtraIngredient>> {
+    const response = await apiInstance.get(`/extra_ingredients`);
 
     return response.data;
 }
