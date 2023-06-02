@@ -1,11 +1,11 @@
 import { ScrollView } from 'react-native';
 import { useContext, useEffect } from 'react';
 
-import { CartContext } from '../../context';
+import { CartContext } from '../../../context';
 
 import { CartItem, TotalElement } from './components';
-import { AppText } from '../../components/typography';
-import { ScreenWrapper } from '../../components/templates';
+import { AppText } from '../../../components/typography';
+import { ScreenWrapper } from '../../../components/templates';
 
 import styles from './CartScreenStyles';
 

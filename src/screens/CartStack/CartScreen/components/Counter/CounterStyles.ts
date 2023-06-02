@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { gray } from '../../../../assets/styles/colors';
+import { gray } from '../../../../../assets/styles/colors';
 
 export default StyleSheet.create({
     wrapper:{

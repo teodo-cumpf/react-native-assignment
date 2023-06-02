@@ -3,17 +3,17 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { CartContext } from '../../../../context';
+import { CartContext } from '../../../../../context';
 
-import { AppButton } from '../../../../components/buttons';
-import { AppText } from '../../../../components/typography';
-import { ContentWrapper } from '../../../../components/templates';
+import { AppButton } from '../../../../../components/buttons';
+import { AppText } from '../../../../../components/typography';
+import { ContentWrapper } from '../../../../../components/templates';
 
-import { STACK_NAMES } from '../../../../navigation/types';
-import { SCREEN_NAMES } from '../../../../navigation/constants';
-import { calculateTotalCartPrice } from '../../../../utility/helperFunctions';
+import { STACK_NAMES } from '../../../../../navigation/types';
+import { SCREEN_NAMES } from '../../../../../navigation/constants';
+import { calculateTotalCartPrice } from '../../../../../utility/helperFunctions';
 
-import { APP_BUTTON_TYPE } from '../../../../components/buttons/AppButton/types';
+import { APP_BUTTON_TYPE } from '../../../../../components/buttons/AppButton/types';
 
 import styles from './TotalElementStyles';
 

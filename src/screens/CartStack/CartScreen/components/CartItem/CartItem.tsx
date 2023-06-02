@@ -1,17 +1,17 @@
 import { View } from 'react-native';
 import { useContext, useState } from 'react';
 
-import { CartContext } from '../../../../context';
+import { CartContext } from '../../../../../context';
 
 import Counter from '../Counter/Counter';
-import { IconButton } from '../../../../components/buttons';
-import { OrderSummary } from '../../../../components/materials';
-import { ContentWrapper } from '../../../../components/templates';
+import { IconButton } from '../../../../../components/buttons';
+import { OrderSummary } from '../../../../../components/materials';
+import { ContentWrapper } from '../../../../../components/templates';
 
-import { useToggle, useDebounce } from '../../../../hooks';
-import { star, trash } from '../../../../utility/imageExporter';
+import { useToggle, useDebounce } from '../../../../../hooks';
+import { star, trash } from '../../../../../utility/imageExporter';
 
-import { Cart } from '../../../../types'
+import { Cart } from '../../../../../types'
 
 import styles from './CartItemStyles';
 

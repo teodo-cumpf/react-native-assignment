@@ -1,8 +1,8 @@
 import { View, TouchableOpacity, Image } from 'react-native';
 
-import { AppText } from '../../../../components/typography';
+import { AppText } from '../../../../../components/typography';
 
-import { arrow_cart_down, arrow_cart_up } from '../../../../utility/imageExporter';
+import { arrow_cart_down, arrow_cart_up } from '../../../../../utility/imageExporter';
 
 import styles from './CounterStyles';
 
