@@ -27,17 +27,24 @@ const CartItem = (props: CartItemProps) => {
 
     const [amount, setAmount] = useState(order.amount);
 
-    const [isFavourite, toggle] = useToggle();
+    const updateOrderItems = () => {
+        const updatedData = {
+            ...order,
+            amount,
+            isFavourite: !order.isFavourite
+        }
+
+        updateOrderItem(updatedData, index);
+    }
     
     useDebounce(() => {
         const updatedData = {
             ...order,
             amount,
-            isFavourite
+            isFavourite: order.isFavourite
         }
-
         updateOrderItem(updatedData, index);
-    }, [amount, isFavourite], 400);
+    }, [amount], 400);
 
     return (
         <ContentWrapper>
@@ -45,9 +52,13 @@ const CartItem = (props: CartItemProps) => {
             
             <View style={styles.action_row}>
                 <View style={styles.icon_buttons}>
-                    <IconButton icon={star} isSelected={order.isFavourite} onPress={toggle}/>
-
-                    <IconButton icon={trash} onPress={() => removeOrderFromCart(index)}/>
+                    <View style={styles.button_wrapper}>
+                        <IconButton icon={star} isSelected={order.isFavourite} onPress={updateOrderItems}/>
+                    </View>
+                    
+                    <View style={styles.button_wrapper}>
+                        <IconButton icon={trash} onPress={() => removeOrderFromCart(index)} isSelected={false}/>
+                    </View>
                 </View>
 
                 <Counter onCountChange={setAmount} count={amount}/>

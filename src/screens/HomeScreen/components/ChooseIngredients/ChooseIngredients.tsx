@@ -21,22 +21,24 @@ import { addOrRemoveByIdIfExist } from '../../../../utility/helperFunctions';
 
 import styles from './ChoseIngredientsStyle';
 
-const ingredientsInitalData = {
-    size: {
-        id: 0,
-        name: '' as SizeType, 
-        currency: '',                         
-        price: 0,
-    },
-    base: {
-        id: 0,
-        name: '',
-    },
-    sauce: {
-        id: 0,
-        name: '',
-    },
-    ingredients: [] as Ingredient[],
+const formatInitalValue = (orderData: OrderData) => {
+    return {
+        size: {
+            id: orderData.size?.id || 0,
+            name: orderData.size?.name ||'' as SizeType, 
+            currency: orderData.size?.currency || '',                         
+            price: orderData.size?.price || 0,
+        },
+        base: {
+            id: orderData.base?.id || 0,
+            name: orderData.base?.name || '',
+        },
+        sauce: {
+            id: orderData.sauce?.id || 0,
+            name: orderData.sauce?.name || '',
+        },
+        ingredients: orderData.ingredients || [] as Ingredient[],
+    }
 }
 
 interface ChooseIngredientsProps {
@@ -46,7 +48,7 @@ interface ChooseIngredientsProps {
 const ChooseIngredients = (props: ChooseIngredientsProps) => {
     const { onChangeStep } = props;
 
-    const { updateOrderData } = useContext(OrderContext);
+    const { orderData, updateOrderData } = useContext(OrderContext);
 
     const [ingredientsLimit, setIngredientsLimit] = useState(0);
     const [selectedSizeName, setSelectedSizeName] = useState<string>();
@@ -73,7 +75,7 @@ const ChooseIngredients = (props: ChooseIngredientsProps) => {
 
     return (
         <Formik
-            initialValues={ingredientsInitalData}
+            initialValues={formatInitalValue(orderData)}
             validationSchema={validationSchema}
             onSubmit={(values) => handleOnSubmit(values)}
         >

@@ -25,6 +25,13 @@ const extraIngredientsInitalData: OrderData = {
     extraIngredients: []
 }
 
+const formatInitalValue = (orderData: OrderData) => {
+    if(orderData.extraIngredients?.length) 
+        return { extraIngredients: orderData.extraIngredients}
+
+    return extraIngredientsInitalData;
+}
+
 interface ChooseExtraIngredientsProps {
     onChangeStep: (step: HomeSteps) => void;
 }
@@ -57,7 +64,8 @@ const ChooseExtraIngredient = (props: ChooseExtraIngredientsProps) => {
 
     return (
         <Formik
-            initialValues={extraIngredientsInitalData}
+            enableReinitialize
+            initialValues={formatInitalValue(orderData)}
             onSubmit={(values) => handleOnSubmit(values.extraIngredients!)}
         >
             {({ handleSubmit, setFieldValue, values }) => (

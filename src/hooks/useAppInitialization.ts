@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect, useCallback } from 'react'
 
-import { AuthenticationContext } from '../context';
+import { AuthenticationContext, OrderContext } from '../context';
 
 import useInitializeFonts from './useInitializeFonts';
 import { getTokenFromStorage } from '../utility/storageHelper';
@@ -8,6 +8,7 @@ import { getTokenFromStorage } from '../utility/storageHelper';
 import config from '../../config';
 
 const useAppInitialization = () => {
+    const { orderData, getAndStoreDataFromStorage } = useContext(OrderContext);
     const { token, setToken, storeJwtToken } = useContext(AuthenticationContext);
 
     const [isAppLoaded, setIsAppLoaded] = useState<boolean>(false);
@@ -22,6 +23,11 @@ const useAppInitialization = () => {
 
         storeJwtToken(config.jwt_token);
     }, [setToken, storeJwtToken]);
+
+    useEffect(() => {
+        if(!orderData.bowl)
+            getAndStoreDataFromStorage();
+    }, []);
 
     useEffect(() => {
         if(!token)

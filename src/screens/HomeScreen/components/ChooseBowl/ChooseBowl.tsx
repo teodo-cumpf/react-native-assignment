@@ -9,7 +9,7 @@ import { AppText } from '../../../../components/typography';
 import { ContentWrapper } from '../../../../components/templates';
 import { AppButton, RadioButton } from '../../../../components/buttons';
 
-import { Bowl, OrderInputType } from '../../../../types';
+import { Bowl, OrderData, OrderInputType } from '../../../../types';
 import { APP_BUTTON_TYPE } from '../../../../components/buttons/AppButton/types';
 
 import { arrow_right } from '../../../../utility/imageExporter';
@@ -27,11 +27,18 @@ const initalBowlValue = {
     }
 }
 
+const formatInitalValue = (orderData: OrderData) => {
+    if(orderData.bowl) 
+        return {bowl: orderData.bowl};
+
+    return initalBowlValue;
+}
+
 const ChooseBowl = (props: ChooseBowlsProps) => {
     const { onNext } = props;
-
+ 
     const { getBowls, bowls } = useContext(BowlContext);
-    const { updateOrderDataByField } = useContext(OrderContext);
+    const { updateOrderDataByField, orderData } = useContext(OrderContext);
 
     const handleOnSubmit = (bowl?: OrderInputType) => {
         if(bowl){
@@ -56,7 +63,8 @@ const ChooseBowl = (props: ChooseBowlsProps) => {
 
     return (
         <Formik
-            initialValues={initalBowlValue}
+            enableReinitialize
+            initialValues={formatInitalValue(orderData)}
             onSubmit={(values) => handleOnSubmit(values.bowl)}
         >
             {({values, handleSubmit, setFieldValue}) => (

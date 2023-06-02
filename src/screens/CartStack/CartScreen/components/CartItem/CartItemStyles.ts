@@ -9,5 +9,8 @@ export default StyleSheet.create({
     icon_buttons:{
         flexDirection: 'row',
         gap: 15
+    },
+    button_wrapper:{
+        position: 'relative'
     }
 });

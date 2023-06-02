@@ -36,5 +36,18 @@ export async function removeOrdersFromCart(){
 }
 
 export async function setOrderDataToStorage(data: OrderData){
-    return AsyncStorage.setItem(ORDER_KEY, JSON.stringify(data));
+    return await AsyncStorage.setItem(ORDER_KEY, JSON.stringify(data));
+}
+
+export async function removeOrderDataFromStorage(){
+    return await AsyncStorage.removeItem(ORDER_KEY);
+}
+
+export async function getOrderDataFromStorage(): Promise<OrderData | undefined>{
+    const orderData = await AsyncStorage.getItem(ORDER_KEY);
+
+    if(orderData)
+        return JSON.parse(orderData);
+
+    return;
 }

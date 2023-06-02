@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { useContext, useEffect } from 'react';
 
-import { SizeContext } from '../../../../context';
+import { OrderContext, SizeContext } from '../../../../context';
 import { RadioButton } from '../../../../components/buttons';
 import { AppText } from '../../../../components/typography';
 
@@ -30,7 +30,7 @@ const SizeForm = (props: SizeFormProps) => {
         setSelectedSizeName,
         setIngredientsLimit,
     } = props;
-
+    const { orderData } = useContext(OrderContext);
     const { getSizes, sizes } = useContext(SizeContext);
 
     const getIngredientLimitFromSize = (name: SizeType) => {
@@ -44,12 +44,21 @@ const SizeForm = (props: SizeFormProps) => {
     }
 
     const handleSelect = (size: Size) => {
+        updateParrentState(size);
+        onSelect(size);
+    }
+
+    const updateParrentState = (size: Size) => {
         const maxIngredients = getIngredientLimitFromSize(size.name);
 
-        onSelect(size);
         setIngredientsLimit(maxIngredients);
         setSelectedSizeName(size.name.toLowerCase());
     }
+
+    useEffect(() => {
+        if(orderData.size?.id)
+            updateParrentState(orderData.size);
+    }, []);
 
     useEffect(() => {
         if (!sizes.length)

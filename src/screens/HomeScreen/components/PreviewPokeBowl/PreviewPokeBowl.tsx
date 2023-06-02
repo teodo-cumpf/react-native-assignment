@@ -27,7 +27,7 @@ const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
     const { onGoToCart } = props;
 
     const { addOrderToCart } = useContext(CartContext);
-    const { orderData } = useContext(OrderContext);
+    const { orderData , resetOrderDataState} = useContext(OrderContext);
     
 
     const totalPrice = calculateTotalPrice(orderData);
@@ -45,8 +45,9 @@ const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
 
     const onAddToCart = () => {
         const cartItem = formatCartItem(orderData)
-        
+
         addOrderToCart(cartItem);
+        resetOrderDataState();
         onGoToCart();
     }
     
@@ -54,6 +55,7 @@ const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
         const cartItem = formatCartItem(orderData);
         
         addOrderToCart(cartItem);
+        resetOrderDataState();
         navigation.navigate(STACK_NAMES.CART_STACK);
         onGoToCart();
     }

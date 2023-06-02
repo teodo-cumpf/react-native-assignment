@@ -25,7 +25,7 @@ const OrderSummary = (props: OrderSummaryProps) => {
     }
 
     return (
-        <>
+        <View>
             <View style={styles.flex_row}>
                 <AppText isHeader>{`${order.bowl?.name}`}</AppText>
                 <AppText isHeader>{`$${(order.amount * calculateTotalPrice(order)).toFixed(2)}`}</AppText>
@@ -42,7 +42,7 @@ const OrderSummary = (props: OrderSummaryProps) => {
                 )}
             </View>
 
-        </>
+        </View>
     );
 }
 

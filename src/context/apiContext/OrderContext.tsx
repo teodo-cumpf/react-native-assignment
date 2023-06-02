@@ -9,7 +9,11 @@ import * as orderService from '../../api/services/userOrderServices';
 
 import { ErrorContext } from '../appContext/ErrorContext';
 
-import { setOrderDataToStorage } from '../../utility/storageHelper';
+import { 
+    setOrderDataToStorage,
+    removeOrderDataFromStorage,
+    getOrderDataFromStorage,
+} from '../../utility/storageHelper';
 import { formatCartForPurchase } from '../../utility/helperFunctions';
 
 import { Cart, OrderData, OrderInputType } from '../../types';
@@ -17,6 +21,8 @@ import { Cart, OrderData, OrderInputType } from '../../types';
 interface OrderContextState {
     orderData: OrderData;
     
+    resetOrderDataState: () => void;
+    getAndStoreDataFromStorage: () => void;
     purchaseAnOrder: (cartItems: Cart[]) => void;
     updateOrderData: (order: OrderData) => void;
     updateOrderDataByField: (fieldName: keyof OrderData, data: OrderInputType) => void; 
@@ -37,6 +43,18 @@ const OrderContextProvider = (props: PropsWithChildren) => {
     const { handleError } = useContext(ErrorContext);
 
     const [orderData, setOrderData] = useState<OrderData>(initalOrderDataState);
+
+    const resetOrderDataState = () => {
+        removeOrderDataFromStorage();
+        setOrderData(initalOrderDataState);
+    }
+
+    const getAndStoreDataFromStorage = () => {
+        getOrderDataFromStorage()
+            .then(order => {
+                if(order) setOrderData(order);
+            });
+    }
 
     const updateOrderDataByField = (fieldName: keyof OrderData, data: OrderInputType) => {
         setOrderData(prevState => {
@@ -78,7 +96,9 @@ const OrderContextProvider = (props: PropsWithChildren) => {
         orderData,
         purchaseAnOrder,
         updateOrderData,
+        resetOrderDataState,
         updateOrderDataByField,
+        getAndStoreDataFromStorage,
     } 
 
     return (
