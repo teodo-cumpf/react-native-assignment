@@ -23,9 +23,4 @@ export interface OrderData {
     extraIngredients?: ExtraIngredient[]
 }
 
-export interface FavouriteOrder extends OrderData {
-    id: number;
-    totalPrice: string;
-}
-
 export type OrderInputType = Bowl | Size | Base | Sauce | Ingredient[] | ExtraIngredient[];

@@ -12,3 +12,5 @@ export { default as home_active } from '../assets/images/icons/home-active.png';
 export { default as arrow_right } from '../assets/images/icons/arrow-right.png';
 export { default as star_active } from '../assets/images/icons/star-active.png';
 export { default as cart_active } from '../assets/images/icons/cart-active.png';
+export { default as arrow_cart_up } from '../assets/images/icons/arrow-cart-up.png';
+export { default as arrow_cart_down } from '../assets/images/icons/arrow-cart-down.png';

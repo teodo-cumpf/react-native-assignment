@@ -51,7 +51,7 @@ const FormInput = (props: FormInputProps) => {
                 />
             </View>
 
-            {showError &&
+            {showError && errorMessage &&
                 <View style={styles.error_wrapper}>
                     <AppText style={styles.required}>* {errorMessage}</AppText>
                 </View>

@@ -3,7 +3,8 @@ const HOME_STACK = {
 }
 
 const CART_STACK = {
-    CART: 'CartScreen'
+    CART: 'CartScreen',
+    DELIVERY: 'DeliveryScreen'
 }
 
 const FAVOURITE_STACK = {

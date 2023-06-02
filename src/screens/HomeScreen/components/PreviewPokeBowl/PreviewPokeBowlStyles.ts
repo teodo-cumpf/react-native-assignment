@@ -11,11 +11,6 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         width: "100%"
     },
-    big_text:{
-        fontSize: 20,
-        letterSpacing: -1,
-        fontFamily: 'Inter-Bold',
-    },
     ingredient_wrapper: {
         paddingHorizontal: 18
     },
@@ -29,9 +24,6 @@ export default StyleSheet.create({
     },
     cart_button_wrapper: {
         width: '82%'
-    },
-    text: {
-        fontSize: 16,
     },
     red_text: {
         color: red  

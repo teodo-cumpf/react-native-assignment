@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { CartScreen } from '../../../screens';
+import { CartScreen, DeliveryScreen } from '../../../screens';
 
 import { SCREEN_NAMES, SCREEN_OPTIONS } from '../../constants';
 
@@ -12,6 +12,10 @@ const CartStackScreen = () => {
             <CartStack.Screen
                 name={SCREEN_NAMES.CART_STACK.CART}
                 component={CartScreen}
+            />
+            <CartStack.Screen
+                name={SCREEN_NAMES.CART_STACK.DELIVERY}
+                component={DeliveryScreen}
             />
         </CartStack.Navigator>
     );

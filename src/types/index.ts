@@ -1,6 +1,7 @@
 export * from './SizeTypes';
 export * from './BaseTypes';
 export * from './BowlTypes';
+export * from './CartTypes';
 export * from './SauceTypes';
 export * from './sharedTypes';
 export * from './UserOrderTypes';

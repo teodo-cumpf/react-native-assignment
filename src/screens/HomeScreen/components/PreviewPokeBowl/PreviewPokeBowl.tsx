@@ -1,21 +1,23 @@
 import { View } from 'react-native';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { OrderContext } from '../../../../context';
+import { CartContext, OrderContext } from '../../../../context';
 
 import { AppText } from '../../../../components/typography';
 import { ContentWrapper } from '../../../../components/templates';
 import { AppButton, IconButton } from '../../../../components/buttons';
 
 import { star } from '../../../../utility/imageExporter';
-import useGetSingleOrderTotalPrice from '../../../../hooks/useGetTotalPrice';
+import { calculateTotalPrice } from '../../../../utility/helperFunctions';
 
+import { OrderData, Cart } from '../../../../types';
 import { STACK_NAMES } from '../../../../navigation/types';
 import { APP_BUTTON_TYPE } from '../../../../components/buttons/AppButton/types';
 
 import styles from './PreviewPokeBowlStyles';
+import { useToggle } from '../../../../hooks';
 
 interface PreviewPokeBowlProps {
     onGoToCart: () => void;
@@ -24,28 +26,36 @@ interface PreviewPokeBowlProps {
 const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
     const { onGoToCart } = props;
 
-    const { orderData, addOrderToFavourites, addOrderToCart } = useContext(OrderContext);
+    const { addOrderToCart } = useContext(CartContext);
+    const { orderData } = useContext(OrderContext);
     
-    const [isFavourited, setIsFavourited] = useState(false); 
 
-    const [totalPrice] = useGetSingleOrderTotalPrice();
+    const totalPrice = calculateTotalPrice(orderData);
+
+    const [isFavourite, toggle] = useToggle();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-    const favouriteOrder = () => {
-        if(!isFavourited){
-            setIsFavourited(true);
-            addOrderToFavourites(orderData, totalPrice);
+    const formatCartItem = (orderData: OrderData) => {
+        return {
+            ...orderData,
+            isFavourite,
+            amount: 1,
         }
     }
 
     const onAddToCart = () => {
-        addOrderToCart(orderData);
+        const cartItem = formatCartItem(orderData)
+        
+        addOrderToCart(cartItem);
         onGoToCart();
     }
     
     const onGoToCheckout = () => {
-        addOrderToCart(orderData);
+        const cartItem = formatCartItem(orderData);
+        
+        addOrderToCart(cartItem);
         navigation.navigate(STACK_NAMES.CART_STACK);
+        onGoToCart();
     }
 
     return (
@@ -53,33 +63,33 @@ const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
             <ContentWrapper>
                 <View style={styles.wrapper}>
                     <View style={styles.flex_row}>
-                        <AppText style={styles.big_text}>{`${orderData.bowl?.name} poke bowl`}</AppText>
-                        <AppText style={styles.big_text}>{`$${orderData.size?.price.toFixed(2)}`}</AppText>
+                        <AppText isHeader>{`${orderData.bowl?.name}`}</AppText>
+                        <AppText isHeader>{`$${orderData.size?.price.toFixed(2)}`}</AppText>
                     </View>
 
-                    <AppText style={styles.text}>{`${orderData.size?.name} size`}</AppText>
-                    <AppText style={styles.text}>{`${orderData.base?.name} base`}</AppText>
-                    <AppText style={styles.text}>{`${orderData.sauce?.name} sauce`}</AppText>
-                    <AppText style={styles.text}>Added ingredients:</AppText>
+                    <AppText>{`${orderData.size?.name} size`}</AppText>
+                    <AppText>{`${orderData.base?.name} base`}</AppText>
+                    <AppText>{`${orderData.sauce?.name} sauce`}</AppText>
+                    <AppText>Added ingredients:</AppText>
                     
                     <View style={styles.ingredient_wrapper}>
                         {orderData.ingredients?.map(ingredient => 
-                            <AppText style={styles.text}>{ingredient.name}</AppText>    
+                            <AppText key={ingredient.id}>{ingredient.name}</AppText>    
                         )}
                     </View>
 
                     {orderData.extraIngredients?.map(ingredient => 
-                        <View style={styles.flex_row}>
-                            <AppText style={styles.text}>{ingredient.name}</AppText>
-                            <AppText style={styles.big_text}>{`$${ingredient.price.toFixed(2)}`}</AppText>
+                        <View style={styles.flex_row} key={ingredient.id}>
+                            <AppText>{ingredient.name}</AppText>
+                            <AppText isHeader>{`$${ingredient.price.toFixed(2)}`}</AppText>
                         </View>    
                     )}
 
                     <View style={styles.divider}/>
 
                     <View style={styles.flex_row}>
-                        <AppText style={[styles.text, styles.red_text]}>Full Price</AppText>
-                        <AppText style={[styles.big_text, styles.red_text]}>
+                        <AppText style={styles.red_text}>Full Price</AppText>
+                        <AppText isHeader style={styles.red_text}>
                             {`$${totalPrice.toFixed(2)}`}
                         </AppText>
                     </View>
@@ -88,7 +98,7 @@ const PreviewPokeBowl = (props: PreviewPokeBowlProps) => {
 
             <View style={styles.buttons_wrapper}>
                 <View style={styles.top_buttons_wrapper}>
-                    <IconButton icon={star} onPress={favouriteOrder} isSelected={isFavourited}/>
+                    <IconButton icon={star} onPress={toggle} isSelected={isFavourite}/>
                     <View style={styles.cart_button_wrapper}>
                         <AppButton
                             onPress={onAddToCart}

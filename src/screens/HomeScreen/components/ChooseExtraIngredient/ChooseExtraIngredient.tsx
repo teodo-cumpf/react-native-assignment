@@ -10,10 +10,10 @@ import { AppButton, CheckBox } from '../../../../components/buttons';
 import { APP_BUTTON_TYPE } from '../../../../components/buttons/AppButton/types';
 
 import {
+    calculateTotalPrice,
     addOrRemoveByIdIfExist,
     formatItemNameWithPrice,
 } from '../../../../utility/helperFunctions';
-import { useGetTotalPrice } from '../../../../hooks';
 import { arrow_right } from '../../../../utility/imageExporter';
 
 import { HomeSteps } from '../../types';
@@ -32,10 +32,10 @@ interface ChooseExtraIngredientsProps {
 const ChooseExtraIngredient = (props: ChooseExtraIngredientsProps) => {
     const { onChangeStep } = props;
 
-    const { updateOrderDataByField } = useContext(OrderContext);
+    const { orderData, updateOrderDataByField } = useContext(OrderContext);
     const { getExtraIngredients, extraIngredients } = useContext(ExtraIngredientContext);
 
-    const [totalPrice] = useGetTotalPrice();
+    const totalPrice = calculateTotalPrice(orderData);
 
     const handleOnSubmit = (orderData: OrderInputType) => {
         updateOrderDataByField("extraIngredients", orderData);

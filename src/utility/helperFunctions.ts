@@ -1,4 +1,10 @@
-import { ExtraIngredient, Size } from "../types";
+import {
+    Cart,
+    Size,
+    OrderData,
+    UserOrder,
+    ExtraIngredient,
+} from "../types";
 
 export const getValuesFromEnum = (enumeration: any) => {
     const enumValues = [];
@@ -42,6 +48,56 @@ export const addOrRemoveByIdIfExist = (objectToHandle: any, objectArray: any[]) 
     return objectArray.concat(objectToHandle);
 }
 
-export const generateIdFromDate = () => {
-    return Math.floor(new Date().getTime());
+export const calculateTotalPrice = (order: OrderData) => {
+    let price = 0;
+
+    if(order.size)
+        price = order.size.price;
+
+    if(order.extraIngredients?.length){
+        order.extraIngredients.forEach(ingredient => {
+            price += ingredient.price;
+        });
+    }
+
+    return price;
+}
+
+export const calculateTotalCartPrice = (cartItems: Cart[]) => {
+    let price = 0;
+
+    cartItems.forEach(cart => {
+        if(cart.size)
+            price += cart.size?.price;
+
+        if(cart.extraIngredients?.length){
+            cart.extraIngredients.forEach(ingreedient => {
+                price += ingreedient.price;
+            });
+        }
+
+        price = price * cart.amount;
+    });
+
+    return price;
+}
+
+export const formatArrayInCommaSeparatedString = (array: string[]) => {
+    return array.join(', ');
+}
+
+
+export const formatCartForPurchase = (items: Cart[]) => {
+    const updatedArray = items.map(item => {
+        return {
+            bowlId: item.bowl?.id.toString(),
+            sizeId: item.size?.id.toString(),
+            baseId: item.base?.id.toString(),
+            sauceId: item.sauce?.id.toString(),
+            ingredients: item.ingredients?.map(ingreadient => ingreadient.id.toString()),
+            extraIngredients: item.extraIngredients?.map(ingreadient => ingreadient.id.toString())
+        }
+    }); 
+
+    return updatedArray as UserOrder[];
 }

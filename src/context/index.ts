@@ -1,5 +1,6 @@
 export { BowlContext } from './apiContext/BowlContext';
 export { SizeContext } from './apiContext/SizeContext';
+export { CartContext } from './appContext/CartContext';
 export { SauceContext } from './apiContext/SauceContext';
 export { ErrorContext } from './appContext/ErrorContext';
 export { OrderContext } from './apiContext/OrderContext';

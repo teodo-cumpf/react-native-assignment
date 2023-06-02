@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import { BowlContextProvider } from './apiContext/BowlContext';
 import { SizeContextProvider } from './apiContext/SizeContext';
 import { BaseContextProvider } from './apiContext/BaseContext';
+import { CartContextProvider } from './appContext/CartContext';
 import { ErrorContextProvider } from './appContext/ErrorContext';
 import { SauceContextProvider } from './apiContext/SauceContext';
 import { OrderContextProvider } from './apiContext/OrderContext';
@@ -21,7 +22,9 @@ const GlobalContextProvider = (props: PropsWithChildren) => {
                                 <IngredientContextProvider>
                                     <ExtraIngredientContextProvider>
                                         <OrderContextProvider>
-                                            {props.children}
+                                            <CartContextProvider>
+                                                {props.children}
+                                            </CartContextProvider>
                                         </OrderContextProvider>
                                     </ExtraIngredientContextProvider>
                                 </IngredientContextProvider>

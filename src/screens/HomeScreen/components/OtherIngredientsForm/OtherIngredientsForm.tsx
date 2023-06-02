@@ -14,7 +14,7 @@ import ingredientsStyles from '../ChooseIngredients/ChoseIngredientsStyle';
 interface OtherIngredientsFormProps {
     limit: number;
     selectedIds: number[];
-    errorMessage?: string;
+    errorMessage?: any;
     selectedSizeName?: string;
     onSelect: (value: Ingredient) => void;
 }
@@ -37,7 +37,7 @@ const OtherIngredientsForm = (props: OtherIngredientsFormProps) => {
 
         return false;
     }
-
+  
     return (
         <View style={styles.container}>
             <AppText style={styles.title}>Pick other ingredients</AppText>

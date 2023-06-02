@@ -26,7 +26,7 @@ const IconButton = (props: IconButtonProps) => {
             onPress={onPress}
             style={formatButtonStyle()}
         >
-            {icon && <Image source={icon} style={styles.icon}/>}
+            <Image source={icon} style={styles.icon}/>
         </TouchableOpacity>
     );
 }

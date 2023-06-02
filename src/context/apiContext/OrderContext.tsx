@@ -1,22 +1,24 @@
-import { PropsWithChildren, createContext, useState } from 'react';
-
 import {
-    setOrderToCart,
-    setOrderDataToStorage,
-    setFavouritesToStorage,
-} from '../../utility/storageHelper';
-import { generateIdFromDate } from '../../utility/helperFunctions';
+    useState,
+    useContext,
+    createContext,
+    PropsWithChildren,
+} from 'react';
 
-import { FavouriteOrder, OrderData, OrderInputType } from '../../types';
+import * as orderService from '../../api/services/userOrderServices';
+
+import { ErrorContext } from '../appContext/ErrorContext';
+
+import { setOrderDataToStorage } from '../../utility/storageHelper';
+import { formatCartForPurchase } from '../../utility/helperFunctions';
+
+import { Cart, OrderData, OrderInputType } from '../../types';
 
 interface OrderContextState {
     orderData: OrderData;
-    cartItems: OrderData[];
-    favouriteOrders: FavouriteOrder[];
-
-    addOrderToCart: (order: OrderData) => void;
+    
+    purchaseAnOrder: (cartItems: Cart[]) => void;
     updateOrderData: (order: OrderData) => void;
-    addOrderToFavourites: (order: OrderData, totalPrice: number) => void;
     updateOrderDataByField: (fieldName: keyof OrderData, data: OrderInputType) => void; 
 }
 
@@ -32,9 +34,9 @@ const initalOrderDataState: OrderData = {
 const OrderContext = createContext<OrderContextState>({} as OrderContextState);
 
 const OrderContextProvider = (props: PropsWithChildren) => {
-    const [cartItems, setCartItems] = useState<OrderData[]>([]);
+    const { handleError } = useContext(ErrorContext);
+
     const [orderData, setOrderData] = useState<OrderData>(initalOrderDataState);
-    const [favouriteOrders, setFavouriteOrders] = useState<FavouriteOrder[]>([]);
 
     const updateOrderDataByField = (fieldName: keyof OrderData, data: OrderInputType) => {
         setOrderData(prevState => {
@@ -62,37 +64,20 @@ const OrderContextProvider = (props: PropsWithChildren) => {
         });
     }
 
-    const addOrderToFavourites = (order: OrderData, totalPrice: number) => {
-        const favouriteObject: FavouriteOrder = {
-            ...order,
-            id: generateIdFromDate(),
-            totalPrice: totalPrice.toFixed(2)
-        }
+    const purchaseAnOrder = async (items: Cart[]) => {
+        const dataForOrder = formatCartForPurchase(items);
 
-        setFavouriteOrders(prevState => {
-            const updatedState = [...prevState, favouriteObject];
+        const [data, error] = await orderService.create_order(dataForOrder);
 
-            setFavouritesToStorage(updatedState);
-            return updatedState;
-        });
-    }
+        if(data) return data;
 
-    const addOrderToCart = (order: OrderData) => {
-        setCartItems(prevState => {
-            const updatedState = [...prevState, order];
-
-            setOrderToCart(updatedState);
-            return updatedState;
-        })
+        handleError(error);
     }
 
     const providerValue = {
         orderData,
-        cartItems,
-        favouriteOrders,
-        addOrderToCart,
+        purchaseAnOrder,
         updateOrderData,
-        addOrderToFavourites,
         updateOrderDataByField,
     } 
 
