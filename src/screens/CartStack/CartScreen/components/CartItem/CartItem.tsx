@@ -52,7 +52,7 @@ const CartItem = (props: CartItemProps) => {
             
             <View style={styles.action_row}>
                 <View style={styles.icon_buttons}>
-                    <View style={styles.button_wrapper}>
+                    <View style={styles.favourite_button}>
                         <IconButton icon={star} isSelected={order.isFavourite} onPress={updateOrderItems}/>
                     </View>
                     

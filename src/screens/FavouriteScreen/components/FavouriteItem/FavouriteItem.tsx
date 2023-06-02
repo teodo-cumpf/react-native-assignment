@@ -38,15 +38,17 @@ const FavouriteScreen = (props: FavouriteScreenProps) => {
         <ContentWrapper>
             <View style={styles.wrapper}>
                 <OrderSummary order={item}/>
-                
                 <AppButton
                     type={APP_BUTTON_TYPE.TERTIARY}
                     text='Edit'
                     onPress={onEdit}
                 />
                 <View style={styles.button_row}>
-                    <IconButton icon={star} isSelected={item.isFavourite} onPress={() => {}}/>
-
+                    <IconButton 
+                        icon={star}
+                        isSelected={item.isFavourite}
+                        onPress={() => {}}
+                    />
                     <View style={styles.button_wrapper}>
                         <AppButton
                             text="Add to Cart"

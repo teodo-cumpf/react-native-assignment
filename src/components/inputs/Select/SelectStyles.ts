@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { dark_gray, white } from '../../../assets/styles/colors';
+import { dark_gray, white, gray } from '../../../assets/styles/colors';
 import { border_radius } from '../../../assets/styles/variables';
 
 export default StyleSheet.create({
     select_wrapper: {
         position: 'relative',
+        zIndex: 1,
     },
     select_container: {
         flexDirection: 'row',
@@ -17,9 +18,12 @@ export default StyleSheet.create({
     },
     option_wrapper: {
         position: 'absolute',
+        zIndex: 1000,
         left: 0,
         right: 0,
         top: 50,
+        borderWidth: 2,
+        borderColor: gray,
         backgroundColor: white,
         borderRadius: border_radius,
         padding: 10,

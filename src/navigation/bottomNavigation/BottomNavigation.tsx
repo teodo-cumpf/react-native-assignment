@@ -6,6 +6,7 @@ import {
     CartStackScreen, 
     FavouriteStackScreen, 
 } from '../stackNavigations';
+import CartIcon from './CartIcon';
 import NavigationIcon from './NavigationIcon';
 import NavigationLabel from './NavigationLabel';
 
@@ -23,7 +24,7 @@ const BottomNavigation = () => {
         return () => ({
             ...SCREEN_OPTIONS,
             tabBarLabel: ({ focused }: NavigationProp) => <NavigationLabel label={label} isFocused={focused}/>,
-            tabBarIcon: ({ focused } : NavigationProp) => <NavigationIcon screen={screen} isFocused={focused}/>
+            tabBarIcon: ({ focused } : NavigationProp) => screen === STACK_NAMES.CART_STACK ? <CartIcon isFocused={focused}/> : <NavigationIcon screen={screen} isFocused={focused}/> 
         });
     }
 

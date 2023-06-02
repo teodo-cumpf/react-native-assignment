@@ -42,7 +42,7 @@ const DetailsForm = (props: DetailsFormProps) => {
                     isRequired
                     value={values.address}
                     showError={!isValid}
-                    placeholder='Peter'
+                    placeholder='e.g 24 Main street, LA'
                     inputHandler={(value) => handleChange('address')(value)}
                     errorMessage={errors.address}
                 />
@@ -51,7 +51,7 @@ const DetailsForm = (props: DetailsFormProps) => {
                     isRequired
                     value={values.phoneNumber}
                     showError={!isValid}
-                    placeholder='Peter'
+                    placeholder='e.g. +61 434561230'
                     inputHandler={(value) => handleChange('phoneNumber')(value)}
                     errorMessage={errors.phoneNumber}
                 />

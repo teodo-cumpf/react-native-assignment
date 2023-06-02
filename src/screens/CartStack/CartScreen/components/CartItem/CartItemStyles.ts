@@ -10,6 +10,10 @@ export default StyleSheet.create({
         flexDirection: 'row',
         gap: 15
     },
+    favourite_button: {
+        position: 'relative',
+        zIndex: 2
+    },
     button_wrapper:{
         position: 'relative'
     }

@@ -10,3 +10,5 @@ export const gray = '#E9E8F8';
 export const light_gray = 'rgba(41, 40, 56, 0.5)';
 
 export const light_blue = '#FAFBFF';
+
+export const pop_up_background = 'rgba(50, 50, 50, 0.5)';

@@ -18,10 +18,10 @@ const locations: Location[] = [
 const LocationScreen = () => {
     return (
         <ScreenWrapper>
-            <AppText>Our locations</AppText>
+            <AppText isHeader>Our locations</AppText>
 
             <View style={styles.list_wrapper}>
-                {locations.map(location => <LocationBox location={location}/>)}
+                {locations.map((location, i) => <LocationBox location={location} key={i}/>)}
             </View>
         </ScreenWrapper>
     );
