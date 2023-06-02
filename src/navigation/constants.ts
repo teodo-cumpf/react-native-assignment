@@ -1,5 +1,6 @@
 const HOME_STACK = {
-    HOME: 'HomeScreen'
+    HOME: 'HomeScreen',
+    LOCATION: 'LocationScreen'
 }
 
 const CART_STACK = {

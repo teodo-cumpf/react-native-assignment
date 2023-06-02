@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeScreen } from '../../../screens';
+import { HomeScreen, LocationScreen } from '../../../screens';
 
 import { SCREEN_NAMES, SCREEN_OPTIONS } from '../../constants';
 
@@ -12,6 +12,10 @@ const HomeStackScreen = () => {
             <HomeStack.Screen
                 name={SCREEN_NAMES.HOME_STACK.HOME}
                 component={HomeScreen}
+            />
+            <HomeStack.Screen
+                name={SCREEN_NAMES.HOME_STACK.LOCATION}
+                component={LocationScreen}
             />
         </HomeStack.Navigator>
     );
